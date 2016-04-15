@@ -1,0 +1,11 @@
+<nav layout="column">
+  <nav ng-repeat="categorie in vm.categories track by categorie.id"  layout="column">
+<!--         <nav layout="column"> -->
+<!--        <h4>{{::categorie.name}}</h4> -->
+<!--        <hr flex layout-fill)/> -->
+<!--        </nav> -->
+      <md-button class="md-raised md-primary" ng-repeat="menuItem in vm.menuItems | filter: {categorieId: categorie.id} track by menuItem.name" ui-sref="{{::menuItem.state}}" ui-sref-opts="{inherit:false,reload:true, notify:true}">
+        {{::menuItem.name}}
+      </md-button>
+  </nav>
+</nav>

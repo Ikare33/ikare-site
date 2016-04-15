@@ -1,0 +1,23 @@
+<!--<form>-->
+  <!--<md-input-container>-->
+    <!--<label>Mail</label>-->
+    <!--<input type="email" ng-model="vm.user.email">-->
+  <!--</md-input-container>-->
+  <!--<md-input-container>-->
+    <!--<label>Password</label>-->
+    <!--<input type="password" ng-model="vm.user.password">-->
+  <!--</md-input-container>-->
+  <!--<div layout="column">-->
+  <!--<label class="error" ng-show="vm.loginFailed">Login failed</label>-->
+  <!--<md-button ng-click="vm.login(vm.user)" class="md-raised md-primary">-->
+    <!--Login-->
+  <!--</md-button>-->
+  <!--</div>-->
+<!--</form>-->
+
+<form ng-submit="vm.login(vm.user)">
+  <formly-form model="vm.user" fields="vm.loginForm"></formly-form>
+  <md-button type="submit" class="md-raised md-primary">
+    Login
+  </md-button>
+</form>

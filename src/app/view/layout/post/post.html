@@ -1,0 +1,23 @@
+<article flex layout-fill layout="column" layout-align="center center">
+  <h1 class="blog-title">{{::vm.post.title}}</h1>
+  
+  <img class="blog-title-image" src="{{::vm.post.image}}"/>
+
+  <div ng-bind-html="vm.post.body" flex layout-fill class="blog-content"></div>
+</article>
+
+<div flex layout-fill layout="row" layout-align="center center" layout-margin="5px">
+    <div class="fb-like" data-href="{{::vm.post.oldurl}}" data-colorscheme="dark" data-layout="button_count" data-action="like" data-show-faces="true" data-send="true"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-via="Nekogaminotabi">Tweeter</a>
+    <script src="https://apis.google.com/js/plusone.js"></script>
+    <g:plus action="share" href="{{::vm.post.oldurl}}" annotation="bubble"></g:plus>
+</div>
+
+<br/>
+<br/>       
+        
+    <div id="disqus_thread" class="blog-content"></div>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+

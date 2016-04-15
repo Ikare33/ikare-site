@@ -1,0 +1,50 @@
+<main layout="row" layout-fill md-theme="{{theme}}">
+  <md-sidenav layout="column" layout-fill
+              class="md-sidenav-left md-whiteframe-z2"
+              md-component-id="menu"
+              md-is-locked-open="$mdMedia('gt-sm')">
+    <md-toolbar>
+      <div class="md-tollbar-tools">
+<!--         <span>Menu</span> -->
+<!--         <md-input-container> -->
+<!--           <label>Theme</label> -->
+<!--           <md-select ng-model="theme"> -->
+<!--             <md-option value="default"> -->
+<!--               Defaut -->
+<!--             </md-option> -->
+<!--             <md-option value="blueTheme"> -->
+<!--               Bleu -->
+<!--             </md-option> -->
+<!--             <md-option value="yellowTheme"> -->
+<!--               Jaune -->
+<!--             </md-option> -->
+<!--             <md-option value="purpleTheme"> -->
+<!--               Violet -->
+<!--             </md-option> -->
+<!--             <md-option value="DarkGreenTheme"> -->
+<!--               Dark Vert -->
+<!--             </md-option> -->
+<!--             <md-option value="DarkBlueTheme"> -->
+<!--               Dark Bleu -->
+<!--             </md-option> -->
+<!--             <md-option value="DarkRedTheme"> -->
+<!--               Dark Rouge -->
+<!--             </md-option> -->
+<!--           </md-select> -->
+<!--         </md-input-container> -->
+      </div>
+      <af-menu></af-menu>
+      <md-content>
+
+      </md-content>
+    </md-toolbar>
+  </md-sidenav>
+  <section layout="column" flex>
+    <md-toolbar>
+      <af-toolbar></af-toolbar>
+    </md-toolbar>
+    <md-content ui-view="content" flex layout-fill>
+
+    </md-content>
+  </section>
+</main>

@@ -1,0 +1,166 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:500,400italic,700,400, 300);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans>);
+@import url(https://fonts.googleapis.com/css?family=Slabo+27px);
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+
+p{
+  font-family: 'Roboto', serif;
+}
+
+html {
+  font-family: 'Roboto', serif;
+}
+
+[layout=row] {
+  flex-direction: row;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+md-toolbar.md-default-theme {
+  background-color: black;
+}
+
+section.jumbotron {
+  margin-bottom: 30px;
+  padding: 1px 30px;
+  background-color: #5aadbb;
+  text-align: center;
+
+  color: white;
+}
+
+section.jumbotron h1 {
+  font-size: 3em;
+}
+
+.techs {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.techs md-card {
+  width: 30%;
+}
+
+.techs md-card img.pull-right {
+  float: right;
+  width: 100px;
+}
+
+.md-raised:hover{
+  background-color: transparent;
+}
+
+.formly-field{
+  width: 100%
+}
+
+/* Liseuse */
+
+.seekBase {
+  height: 10px;
+  width: 100px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+.seekLoad {
+    height: 10px;
+  width: 0;
+  background-color: #E0EAF1;
+  border-radius: 5px;
+}
+
+.pdfButton{
+    color: black;
+}
+
+.pdfButton:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.inverse {
+  color: white;
+}
+
+.inverse:hover {
+  color: black;
+}
+
+#the-canvas {
+    background-color: gray;
+    display: block;
+    width:inherit;
+}
+
+/* Blog */ 
+
+.blog-card {
+    font-family: 'Slabo 27px', serif;
+}
+
+.blog-card:hover{
+    cursor: pointer;
+    opacity: 0.6; 
+    filter: alpha(opacity=60);     
+}
+
+.blog-card img{
+    top: -50%;
+}
+
+.blog-card-image{
+  position : relative;
+  max-height : 100px;
+  max-width: 100%;
+  overflow : hidden;
+}
+
+/* Post */ 
+
+.blog-content {
+    color: white;
+    padding : 10px 10px 10px 10px;
+}
+
+.blog-title-image{
+    border: 2px solid grey;
+    max-width: calc(100% - 30px);
+}
+
+.blog-title{
+    font-family: 'Ubuntu';
+    font-size : 2em; 
+}
+
+.blog-content p{
+    font-family: 'Raleway', sans-serif;
+}
+
+.blog-content h2{
+    font-family: 'Ubuntu';
+}
+
+/* Disqus */ 
+  
+  [title="Afficher plus"] {
+        color: #ffffff !important;
+    }
+}
+
+.publisher-anchor-color a{
+    color: white !important;
+}
+
+.post-message p{
+    font-family: 'Raleway', sans-serif !important;
+}

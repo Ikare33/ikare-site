@@ -1,17 +1,34 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:500,400italic,700,400, 300);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans>);
-@import url(https://fonts.googleapis.com/css?family=Slabo+27px);
-@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
-@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+@import url(//fonts.googleapis.com/css?family=Open+Sans>);
+@import url(//fonts.googleapis.com/css?family=Slabo+27px);
+@import url(//fonts.googleapis.com/css?family=Indie+Flower);
+@import url(//fonts.googleapis.com/css?family=Raleway:400,700);
+@import url(//fonts.googleapis.com/css?family=Lato);
 
-p{
-  font-family: 'Roboto', serif;
+body {
+    -webkit-animation-delay: 0.1s;
+    -webkit-animation-name: fontfix;
+    -webkit-animation-duration: 0.1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
 }
 
-html {
-  font-family: 'Roboto', serif;
+@-webkit-keyframes fontfix {
+    from { opacity: 1; }
+    to   { opacity: 1; }
+}
+
+html, p, 
+.post-content .post-message p{
+  font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+h2{
+  font-family: 'PT Sans Narrow', sans-serif !important;
+}
+
+h1{
+    font-family: 'Dosis', sans-serif;
 }
 
 [layout=row] {
@@ -115,7 +132,7 @@ section.jumbotron h1 {
 }
 
 .blog-card img{
-    top: -50%;
+    top: -250px;
 }
 
 .blog-card-image{
@@ -138,17 +155,16 @@ section.jumbotron h1 {
 }
 
 .blog-title{
-    font-family: 'Ubuntu';
     font-size : 2em; 
 }
 
-.blog-content p{
-    font-family: 'Raleway', sans-serif;
-}
+/* .blog-content p{ */
+/*     font-family: 'Raleway', sans-serif; */
+/* } */
 
-.blog-content h2{
-    font-family: 'Ubuntu';
-}
+/* .blog-content h2{ */
+/*     font-family: 'Lato', sans-serif; */
+/* } */
 
 /* Disqus */ 
   
@@ -163,4 +179,114 @@ section.jumbotron h1 {
 
 .post-message p{
     font-family: 'Raleway', sans-serif !important;
+}
+
+/* Menu */
+.side-menu, .side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.side-menu .md-button.active {
+  color: deeppink;
+}
+
+.side-menu .menu-toggle-list a.md-button {
+  display: block;
+  padding: 0 16px 0 32px;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  font-weight: 500;
+}
+
+.side-menu .menu-toggle-list .md-button {
+  display: block;
+  padding: 0 16px 0 32px;
+  text-transform: none;
+}
+
+.side-menu > li {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.md-button-toggle .md-toggle-icon.toggled {
+  transform: rotateZ(180deg);
+  -webkit-transform: rotateZ(180deg);
+}
+
+.side-menu .md-button-toggle .md-toggle-icon {
+  background-size: 100% auto;
+  display: inline-block;
+  margin: auto 0 auto auto;
+  width: 15px;
+  color: darkgray;
+  transition: transform .3s ease-in-out;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+}
+
+.menu-toggle-list.ng-hide {
+  max-height: 0;
+}
+
+.side-menu .md-button {
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 40px;
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 0px 16px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  width: 100%;
+}
+
+.menu-toggle-list {
+  max-height: 1300px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -webkit-transition-property: max-height;
+  -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -moz-transition-property: max-height;
+  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: max-height;
+}
+
+.side-menu menu-toggle span{
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.menu-button{
+    width: calc(100% - 24px);
+    text-align: left;
+    font-weight: bold;
+}
+
+md-sidenav {
+    max-width: 260px !important;
+}
+
+.menu-title{
+    font-weight: bold;
+    color: lightgrey;
+    line-height:0px;
+}
+
+.categorie{
+    border-bottom : 1px solid #d3d3d3;
+}
+
+.wing-left{
+    background:url("../assets/images/wing-left.svg") no-repeat ;
+}
+
+.wing-right{
+    background:url("../assets/images/wing-left.svg") no-repeat ;
 }

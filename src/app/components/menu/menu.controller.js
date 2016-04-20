@@ -22,6 +22,24 @@
     
     vm.goTo = function(state){
     	$window.location.href = state;
-    }
+    };
+    
+    vm.isOpen = function(section){
+    	if(section.isOpen === undefined){
+    		section.isOpen = false;
+    	}
+    	
+    	return section.isOpen;
+    };
+    
+    vm.toggle = function(section){
+    	if(section.isOpen === undefined){
+    		section.isOpen = false;
+    	}else if(section.isOpen){
+    		section.isOpen = false
+    	}else{
+    		section.isOpen = true;
+    	}
+    };
   }
 })();

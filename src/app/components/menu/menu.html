@@ -1,11 +1,46 @@
 <nav layout="column">
-  <nav ng-repeat="categorie in vm.categories track by categorie.id"  layout="column">
-<!--         <nav layout="column"> -->
-<!--        <h4>{{::categorie.name}}</h4> -->
-<!--        <hr flex layout-fill)/> -->
-<!--        </nav> -->
-      <md-button class="md-raised md-primary" ng-repeat="menuItem in vm.menuItems | filter: {categorieId: categorie.id} track by menuItem.name" ui-sref="{{::menuItem.state}}" ui-sref-opts="{inherit:false,reload:true, notify:true}">
-        {{::menuItem.name}}
-      </md-button>
-  </nav>
+    <nav layout="row" class="categorie">
+        <span class="wing-left"></span>
+        <h1>I-kare</h1>
+        <span class="wing-rigth"></span>
+    </nav>
+    <nav ng-repeat="menuItem in vm.menuItems" layout="column">
+        <nav layout="column" ng-if="menuItem.type == 'categorie'" class="categorie">
+            <nav layout="column" class="menu-title" layout-align="center center">
+                <p>{{::menuItem.name}}</p>
+            </nav>
+            <nav layout="column" ng-repeat="child in menuItem.children">
+                <nav ng-if="child.type == 'submenu'">
+                    <md-button class="md-button-toggle menu-button"
+                        ng-click="vm.toggle(child)"
+                        aria-controls="side-menu-{{child.name | nospace}}"
+                        flex layout="row" aria-expanded="{{vm.isOpen(child)}}">{{child.name}}
+                        <span flex></span>
+                    <span aria-hidden="true"
+                        class="pull-right fa fa-chevron-down md-toggle-icon"
+                        ng-class="{'toggled' : vm.isOpen(child)}"></span> </md-button>
+                    <ul ng-show="vm.isOpen(child)"
+                        id="side-menu-{{child.name | nospace}}"
+                        class="menu-toggle-list">
+                        <li ng-repeat="page in child.children"><md-button  class="menu-button"
+                                ui-sref="{{::page.state}}"
+                                ui-sref-opts="{inherit:false,reload:true, notify:true}">
+                            {{::page.name}} </md-button></li>
+                    </ul>
+                </nav>
+                <nav ng-if="child.type == 'link'">
+                    <md-button class="menu-button"
+                        ui-sref="{{::child.state}}"
+                        ui-sref-opts="{inherit:false,reload:true, notify:true}">
+                    {{::child.name}} </md-button>
+                </nav>
+            </nav>
+        </nav>
+        <nav ng-if="menuItem.type == 'link'">
+            <md-button  class="menu-button"
+                ui-sref="{{::menuItem.state}}"
+                ui-sref-opts="{inherit:false,reload:true, notify:true}">
+            {{::menuItem.name}} </md-button>
+        </nav>
+    </nav>
 </nav>

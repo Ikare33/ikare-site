@@ -10,7 +10,7 @@
     // Enable log
     $logProvider.debugEnabled(false);
 
-    $urlRouterProvider.otherwise('/liseuse/1');
+    $urlRouterProvider.otherwise('/accueil');
     $locationProvider.html5Mode(true);
   }
 

@@ -1,8 +1,8 @@
 <nav layout="column">
-    <nav layout="row" class="categorie">
-        <span class="wing-left"></span>
-        <h1>I-kare</h1>
-        <span class="wing-rigth"></span>
+    <nav layout="row" class="categorie" layout-align="center center">
+<!--         <span class="wing-left"></span> -->
+        <h1 class="ikare">I-kare</h1>
+<!--         <span class="wing-right"></span> -->
     </nav>
     <nav ng-repeat="menuItem in vm.menuItems" layout="column">
         <nav layout="column" ng-if="menuItem.type == 'categorie'" class="categorie">

@@ -9,7 +9,9 @@
 	                             'af.form',
 	                             'af.toolbar',
 	                             'af.menu',
-	                             'af.liseuse'
+	                             'af.liseuse',
+	                             'af.accueil',
+	                             'af.nekogaminotabi.projet'
 	                             ])
 	                             .config(layoutRouting);
 

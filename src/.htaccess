@@ -1,0 +1,10 @@
+RewriteEngine On
+
+RewriteRule ^(.*)api/v1(.*) "/rest.php" [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*) /index.html [NC,L]

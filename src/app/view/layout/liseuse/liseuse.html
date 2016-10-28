@@ -1,4 +1,6 @@
-<div layout-fill flex style="height: calc(100vh - 56px)" ng-style="{'visibility': vm.ready?'visible':'hidden'}" ng-show="vm.ready">
+<div layout-fill flex style="height: calc(100vh - 66px)"
+    ng-style="{'visibility': vm.ready?'visible':'hidden'}"
+    ng-show="vm.ready">
     <sound-manager></sound-manager>
     <div class="sm2-bar-ui textured full-width">
 
@@ -8,16 +10,19 @@
             <div class="sm2-inline-gradient"></div>
 
             <div class="sm2-inline-element sm2-button-element"
-                ng-style="{'visibility': isPlaying?'visible':'hidden'}" ng-show="isPlaying">
+                ng-style="{'visibility': isPlaying?'visible':'hidden'}"
+                ng-show="isPlaying">
                 <div class="sm2-button-bd">
                     <a pause-music class="sm2-inline-button pause"></a>
                 </div>
             </div>
 
             <div class="sm2-inline-element sm2-button-element"
-                ng-style="{'visibility': isPlaying?'hidden':'visible'}" ng-hide="isPlaying">
+                ng-style="{'visibility': isPlaying?'hidden':'visible'}"
+                ng-hide="isPlaying">
                 <div class="sm2-button-bd">
-                    <a play-music class="sm2-inline-button play-pause" id="playButton"></a>
+                    <a play-music class="sm2-inline-button play-pause"
+                        id="playButton"></a>
                 </div>
             </div>
 
@@ -31,7 +36,8 @@
                             <p>JavaScript is required.</p>
                         </noscript>
                         <marquee>{{ currentPlaying.title }} -
-                            {{ currentPlaying.artist }} [{{ currentPlaying.album }}]</marquee>
+                            {{ currentPlaying.artist }} [{{
+                            currentPlaying.album }}]</marquee>
                     </div>
                 </div>
 
@@ -190,24 +196,39 @@
 
     </div>
 
-    <div style="height: calc(100vh - 56px - 100px); width:100%; overflow-y: auto;" ng-swipe-left="vm.previousPage()" ng-swipe-right="vm.nextPage()">
-        <canvas id="the-canvas"></canvas>
+    <div
+        style="height: calc(100vh - 66px - 100px); width: calc(100vw - {{ vm.canvasWidth}}px); overflow-y: auto;"
+        ng-swipe-left="vm.previousPage()" ng-swipe-right="vm.nextPage()"
+        layout-align="center center">
+        <div id="canvasWrapper">
+            <canvas id="the-canvas"></canvas>
+        </div>
     </div>
 
-    <div class="sm2-bar-ui textured full-width" align="center">
-        <a class="fa-stack fa-lg pdfButton" ng-click="vm.previousPage()">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-angle-left fa-stack-1x inverse"></i>
-        </a>
-        {{vm.page }} / {{ vm.pdf.numPages }}
-        <a class="fa-stack fa-lg pdfButton" ng-click="vm.nextPage()">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-angle-right fa-stack-1x inverse"></i>
+    <div class="sm2-bar-ui textured full-width" align="center" style="vertical-align:middle">
+        <a class="fa-stack fa-lg pdfButton" ng-click="vm.zoomOut()">
+            <i class="fa fa-circle fa-stack-2x"></i> <i
+            class="fa fa-search-minus fa-stack-1x inverse"></i>
+        </a> <a class="fa-stack fa-lg pdfButton"
+            ng-click="vm.previousPage()"> <i
+            class="fa fa-circle fa-stack-2x"></i> <i
+            class="fa fa-angle-left fa-stack-1x inverse"></i>
+        </a> {{vm.page }} / {{ vm.pdf.numPages }} <a
+            class="fa-stack fa-lg pdfButton" ng-click="vm.nextPage()">
+            <i class="fa fa-circle fa-stack-2x"></i> <i
+            class="fa fa-angle-right fa-stack-1x inverse"></i>
+        </a> <a class="fa-stack fa-lg pdfButton" ng-click="vm.zoomIn()">
+            <i class="fa fa-circle fa-stack-2x"></i> <i
+            class="fa fa-search-plus fa-stack-1x inverse"></i>
         </a>
     </div>
 </div>
-<div layout="column" layout-align="center center" style="height: calc(100vh - 56px)" ng-style="{'visibility': vm.ready?'hidden':'visible'}" ng-hide="vm.ready">
+<div id="loadPDF" layout="column" layout-align="center center"
+    style="height: calc(100vh - 66px)"
+    ng-style="{'visibility': vm.ready?'hidden':'visible'}"
+    ng-hide="vm.ready">
 
     <h4>Chargement en cours</h4>
-    <md-progress-linear md-mode="determinate" value="{{vm.determinateValue}}" style="width: 90%"></md-progress-linear>
+    <md-progress-linear md-mode="determinate"
+        value="{{vm.determinateValue}}" style="width: 90%"></md-progress-linear>
 </div>

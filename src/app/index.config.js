@@ -8,9 +8,9 @@
   /** @ngInject */
   function config($logProvider, $urlRouterProvider, $locationProvider) {
     // Enable log
-    $logProvider.debugEnabled(false);
+    $logProvider.debugEnabled(true);
 
-    $urlRouterProvider.otherwise('/accueil');
+        $urlRouterProvider.otherwise('/accueil');
     $locationProvider.html5Mode(true);
   }
 

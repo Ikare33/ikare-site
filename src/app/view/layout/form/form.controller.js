@@ -5,12 +5,12 @@
     .controller('FormController', FormController);
 
   /**
-   *
-   * @param $log
-   * @param $postModel
-   * @constructor
-   * @ngInject
-   */
+     * 
+     * @param $log
+     * @param $postModel
+     * @constructor
+     * @ngInject
+     */
   function FormController($log, postModel){
     var vm = this;
 

@@ -5,10 +5,10 @@
     .controller('LoginController', LoginController);
 
   /**
-   *
-   * @constructor
-   * @ngInject
-   */
+     * 
+     * @constructor
+     * @ngInject
+     */
   function LoginController($log, $auth, $state, $mdDialog, $mdMedia, afLoginForm){
     var vm = this;
 

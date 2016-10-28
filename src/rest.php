@@ -5,26 +5,32 @@ require 'vendor/autoload.php';
 $app = new \Slim\Slim();
  
 $app->get('/api/v1/posts/', function() use($app) {
-	$app->response->setStatus(200);
-
-	// on se connecte Ã  MySQL 
-	$db = mysql_connect('localhost:3306', 'root', ''); 
-
-	// on sÃ©lectionne la base 
-	mysql_select_db('test',$db); 
-	
-	$req = mysql_query('SELECT * FROM POST')  or die('Erreur SQL ! '.mysql_error());
-	
+		
 	$result = [];
+
+	// on se connecte à MySQL 
+	try{
+		$db = mysqli_connect("localhost:3306", "root", "", "ikare");
+		
+		$req = mysqli_query($db, 'SELECT * FROM post');
+		
+		while ($row = mysqli_fetch_assoc($req)) {
+			$result[] = array_change_key_case ($row);
+		}
+		
+		$req->close();
+		
+		$app->response->setStatus(200);
 	
-	while ($row = mysql_fetch_assoc($req)) {
-		$result[] = array_change_key_case ($row);
+		$app->response->body(json_encode($result));
+	}catch(Exception $e){
+		$app->response->setStatus(500);
+		echo mysqli_connect_error();
+		echo  $db->error;
 	}
 	
 	//$data = array_change_key_case (mysql_fetch_assoc($req));
 	//error_log(implode(',', $result));
-	
-	$app->response->body(json_encode($result));
 	
 	return $app->response;
 });
@@ -32,20 +38,22 @@ $app->get('/api/v1/posts/', function() use($app) {
 $app->get('/api/v1/posts/:id', function($id) use($app) {
 	$app->response->setStatus(200);
 
-	// on se connecte Ã  MySQL 
-	$db = mysql_connect('localhost:3306', 'root', ''); 
+	// on se connecte à MySQL 
+	$db = mysqli_connect('localhost:3306', 'root', '', 'ikare'); 
 
-	// on sÃ©lectionne la base 
-	mysql_select_db('test',$db); 
+	// on sélectionne la base 
+	//mysql_select_db('ikare',$db); 
 	
-	$req = mysql_query('SELECT * FROM POST WHERE ID = '.$id)  or die('(id: '.$id.') Erreur SQL ! '.mysql_error());
+	$req = mysqli_query($db, 'SELECT * FROM POST WHERE ID = "'.$id.'"');
 	
-	$row = mysql_fetch_assoc($req);
+	$row = mysqli_fetch_assoc($req);
 	
 	//$data = array_change_key_case (mysql_fetch_assoc($req));
 	//error_log(implode(',', $result));
 	
 	$app->response->body(json_encode(array_change_key_case ($row)));
+	
+	$req->close();
 	
 	return $app->response;
 });

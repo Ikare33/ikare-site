@@ -1,12 +1,14 @@
-<nav layout="column">
-    <nav layout="row" class="categorie" layout-align="center center">
-<!--         <span class="wing-left"></span> -->
+<nav layout="column" flex layout-fill>
+    <nav layout="row" ui-sref="/accueil" class="categorie" layout-align="center center">
+        <!--         <span class="wing-left"></span> -->
         <h1 class="ikare">I-kare</h1>
-<!--         <span class="wing-right"></span> -->
+        <!--         <span class="wing-right"></span> -->
     </nav>
     <nav ng-repeat="menuItem in vm.menuItems" layout="column">
-        <nav layout="column" ng-if="menuItem.type == 'categorie'" class="categorie">
-            <nav layout="column" class="menu-title" layout-align="center center">
+        <nav layout="column" ng-if="menuItem.type == 'categorie'"
+            class="categorie">
+            <nav layout="column" class="menu-title"
+                layout-align="center center">
                 <p>{{::menuItem.name}}</p>
             </nav>
             <nav layout="column" ng-repeat="child in menuItem.children">
@@ -14,15 +16,17 @@
                     <md-button class="md-button-toggle menu-button"
                         ng-click="vm.toggle(child)"
                         aria-controls="side-menu-{{child.name | nospace}}"
-                        flex layout="row" aria-expanded="{{vm.isOpen(child)}}">{{child.name}}
-                        <span flex></span>
-                    <span aria-hidden="true"
+                        flex layout="row"
+                        aria-expanded="{{vm.isOpen(child)}}">{{child.name}}
+                    <span flex></span> <span aria-hidden="true"
                         class="pull-right fa fa-chevron-down md-toggle-icon"
-                        ng-class="{'toggled' : vm.isOpen(child)}"></span> </md-button>
+                        ng-class="{'toggled' : vm.isOpen(child)}"></span>
+                    </md-button>
                     <ul ng-show="vm.isOpen(child)"
                         id="side-menu-{{child.name | nospace}}"
                         class="menu-toggle-list">
-                        <li ng-repeat="page in child.children"><md-button  class="menu-button"
+                        <li ng-repeat="page in child.children"><md-button
+                                class="menu-button"
                                 ui-sref="{{::page.state}}"
                                 ui-sref-opts="{inherit:false,reload:true, notify:true}">
                             {{::page.name}} </md-button></li>
@@ -37,7 +41,7 @@
             </nav>
         </nav>
         <nav ng-if="menuItem.type == 'link'">
-            <md-button  class="menu-button"
+            <md-button class="menu-button"
                 ui-sref="{{::menuItem.state}}"
                 ui-sref-opts="{inherit:false,reload:true, notify:true}">
             {{::menuItem.name}} </md-button>

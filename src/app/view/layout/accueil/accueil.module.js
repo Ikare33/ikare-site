@@ -1,27 +1,24 @@
-(function(){
-	'use strict';
+(function() {
+    'use strict';
 
-	angular.module('af.accueil', [
-	                             'ui.router',
-	                             'ngMaterial'
-	                             ])
-	                             .config(accueilRouting);
+    angular.module('af.accueil', [ 'ui.router', 'ngMaterial' ]).config(
+            accueilRouting);
 
-	/**
-	 *
-	 * @param $stateProvider
-	 * @ngInject
-	 */
-	function accueilRouting($stateProvider, $mdThemingProvider, afMenuProvider){
-		$stateProvider.state('accueil', {
-		      parent: 'layout',
-		      url: '/accueil',
-		      views: {
-		        content: {
-		          templateUrl: 'app/view/layout/accueil/accueil.html'
-		        }
-		      }
-		});
-		      
-	}
+    /**
+     * 
+     * @param $stateProvider
+     * @ngInject
+     */
+    function accueilRouting($stateProvider) {
+        $stateProvider.state('accueil', {
+            parent : 'layout',
+            url : '/accueil',
+            views : {
+                content : {
+                    templateUrl : 'app/view/layout/accueil/accueil.html'
+                }
+            }
+        });
+
+    }
 })();

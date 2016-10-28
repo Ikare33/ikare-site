@@ -10,7 +10,7 @@
      * @constructor
      * @ngInject
      */
-    function PostController($log, postModel, $stateParams, $document) {
+    function PostController($log, postModel, $stateParams) {
         var vm = this;
 
         $log.debug('PostController start');
@@ -48,12 +48,12 @@
 
                     /* * * DON'T EDIT BELOW THIS LINE * * */
                     (function() {
-                        var dsq = $document.createElement('script');
+                        var dsq = document.createElement('script');
                         dsq.type = 'text/javascript';
                         dsq.async = true;
                         dsq.src = '//' + disqus_shortname
                         + '.disqus.com/embed.js';
-                        ($document.getElementsByTagName('head')[0] || $document
+                        (document.getElementsByTagName('head')[0] || document
                                 .getElementsByTagName('body')[0])
                                 .appendChild(dsq);
                     })();
@@ -70,12 +70,12 @@
                     }(document, 'script', 'facebook-jssdk'));
 
                     // initialisation google plus
-                    var js = $document.createElement("script");
+                    var js = document.createElement("script");
 
                     js.type = "text/javascript";
                     js.src = 'https://apis.google.com/js/plusone.js';
 
-                    $document.body.appendChild(js);
+                    document.body.appendChild(js);
                 })
     }
 })();

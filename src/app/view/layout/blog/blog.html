@@ -5,12 +5,13 @@
     ng-repeat="post in vm.posts track by post.id"> <md-content
     class="md-padding" layout-xs="column" layout="row" flex>
 <div flex layout="column">
-    <md-card flex class="blog-card" ng-href="{{vm.toPost(post.id)}}">
+<a class="notLink" href="{{vm.toPost(post.id)}}">
+    <md-card flex class="blog-card">
     <div class="blog-card-image">
         <img ng-src="{{post.image}}" class="md-card-image">
     </div>
     <md-card-title> <md-card-title-text>
     <span class="md-headline">{{post.title}}</span> </md-card-title-text> </md-card-title> <md-card-content>
-    {{post.description}} </md-card-content> </md-card>
+    {{post.description}} </md-card-content> </md-card></a>
 </div>
 </md-content> </md-list-item>

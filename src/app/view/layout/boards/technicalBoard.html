@@ -1,0 +1,53 @@
+<h1>{{::vm.title}}</h1>
+
+<div layout="row" flex layout-fill
+    style="height: calc(100vh - 56px - 100px);">
+    <div layout="column" layout-align="top center" flex layout-fill
+        style="width: 33%">
+        <h2>Stock</h2>
+        <md-list-item class="md-1-line" ng-class="{{task.priority}}"
+            ng-repeat="task in vm.tasks | filter:{status:'NEW'} track by task.id">
+        <md-content class="md-padding" layout-xs="column" layout="row"
+            flex>
+        <div flex layout="column">
+            <md-card flex class="blog-card"> <md-card-title>
+            <md-card-title-text> <span
+                class="md-headline">{{task.name}}</span> </md-card-title-text> </md-card-title> <md-card-content>
+
+            </md-card-content> </md-card>
+        </div>
+        </md-content> </md-list-item>
+    </div>
+    <div layout="column" layout-align="top center" flex layout-fill
+        style="width: 33%">
+        <h2>En cours</h2>
+        <md-list-item class="md-1-line" ng-class="{{task.priority}}"
+            ng-repeat="task in vm.tasks | filter:{status:'ENC'} track by task.id">
+        <md-content class="md-padding" layout-xs="column" layout="row"
+            flex>
+        <div flex layout="column">
+            <md-card flex class="blog-card"> <md-card-title>
+            <md-card-title-text> <span
+                class="md-headline">{{task.name}}</span> </md-card-title-text> </md-card-title> <md-card-content>
+
+            </md-card-content> </md-card>
+        </div>
+        </md-content> </md-list-item>
+    </div>
+    <div layout="column" layout-align="top center" flex layout-fill
+        style="width: 33%">
+        <h2>Termin&eacute</h2>
+        <md-list-item ng-class="{{task.priority}}" class="md-1-line"
+            ng-repeat="task in vm.tasks | filter:{status:'FIN'} track by task.id">
+        <md-content class="md-padding" layout-xs="column" layout="row"
+            flex>
+        <div flex layout="column">
+            <md-card flex class="blog-card"> <md-card-title>
+            <md-card-title-text> <span
+                class="md-headline">{{task.name}}</span> </md-card-title-text> </md-card-title> <md-card-content>
+
+            </md-card-content> </md-card>
+        </div>
+        </md-content> </md-list-item>
+    </div>
+</div>

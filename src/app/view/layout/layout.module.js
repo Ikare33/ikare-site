@@ -5,7 +5,7 @@
             'af.layout',
             [ 'ui.router', 'ngMaterial', 'ngLoadScript', 'af.blog', 'af.post', 'af.form',
                     'af.toolbar', 'af.board', 'af.menu',
-                    'af.liseuse', 'af.accueil', 'af.nekogaminotabi.synopsis' ])
+                    'af.liseuse', 'af.accueil', 'af.nekogaminotabi.synopsis', 'af.nekogaminotabi.betaLecteurs' ])
             .config(layoutRouting);
 
     /**

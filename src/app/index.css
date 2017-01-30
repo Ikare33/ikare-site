@@ -60,6 +60,10 @@ md-toolbar.md-default-theme {
     background-color: rgb(244,67,54);
 }
 
+.ikare-toolbar {
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,.5);
+}
+
 section.jumbotron {
     margin-bottom: 30px;
     padding: 1px 30px;
@@ -110,7 +114,11 @@ section.jumbotron h1 {
 }
 
 .pdfButton {
-    color: black;
+    color: dodgerblue !important;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,.75) !important;
+}
+
+.shadow-circle{
 }
 
 .pdfButton:hover {
@@ -318,8 +326,8 @@ h1.ikare {
     font-size: 2.5em;
 }
 
-a:not(.notLink) {
-    color: red;
+a:not(.notLink)  {
+    color: dodgerblue;
 }
 
 a.notLink{

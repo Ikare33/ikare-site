@@ -1,25 +1,26 @@
 (function(){
     'use strict';
 
-    angular.module('af.board.technical', [
+    angular.module('af.board', [
                                           'ui.router',
                                           'ngMaterial'
                                           ])
-                                          .config(technicalBoardRouting);
+                                          .config(boardRouting);
 
     /**
      *
      * @param $stateProvider
      * @ngInject
      */
-    function technicalBoardRouting($stateProvider){
-        $stateProvider.state('technicalBoard', {
+    function boardRouting($stateProvider){
+        $stateProvider.state('board', {
             parent: 'layout',
-            url: '/avancement/technique',
+            url: '/avancement/:id',
+            title: 'Boards',
             views: {
                 content: {
-                    controller: 'TechnicalBoardController as vm',
-                    templateUrl: 'app/view/layout/boards/technicalBoard.html'
+                    controller: 'BoardController as vm',
+                    templateUrl: 'app/view/layout/board/board.html'
                 }
             }
         });

@@ -13,6 +13,7 @@
         $stateProvider.state('accueil', {
             parent : 'layout',
             url : '/accueil',
+            title: 'Accueil',
             views : {
                 content : {
                     templateUrl : 'app/view/layout/accueil/accueil.html'

@@ -3,9 +3,9 @@
 
     angular.module(
             'af.layout',
-            [ 'ui.router', 'ngMaterial', 'af.blog', 'af.post', 'af.form',
-                    'af.toolbar', 'af.board.technical', 'af.menu',
-                    'af.liseuse', 'af.accueil', 'af.nekogaminotabi.projet' ])
+            [ 'ui.router', 'ngMaterial', 'ngLoadScript', 'af.blog', 'af.post', 'af.form',
+                    'af.toolbar', 'af.board', 'af.menu',
+                    'af.liseuse', 'af.accueil', 'af.nekogaminotabi.synopsis' ])
             .config(layoutRouting);
 
     /**
@@ -41,11 +41,8 @@
         afMenuProvider.addMenuItem({
             name : 'Nekogami no tabi',
             type : 'categorie',
-            children : [ {
-                name : 'Le projet',
-                state : 'nekogaminotabi/projet',
-                type : 'link'
-            }, {
+            children : [ 
+            {
                 name : 'Synopsis',
                 state : 'nekogaminotabi/synopsis',
                 type : 'link'
@@ -94,9 +91,21 @@
             name : 'Avancement',
             type : 'categorie',
             children : [ {
-                name : 'Technique',
-                state : 'technicalBoard',
-                type : 'link'
+                name : 'Boards',
+                type : 'submenu',
+                children : [ {
+                    name : 'Technique',
+                    state : 'board({id: "technique"})',
+                    type : 'link'
+                }, {
+                    name : 'Nekogami no tabi',
+                    state : 'board({id: "nekogami"})',
+                    type : 'link'
+                }, {
+                    name : 'Autres',
+                    state : 'board({id: "autres"})',
+                    type : 'link'
+                } ]
             } ]
         });
         ;

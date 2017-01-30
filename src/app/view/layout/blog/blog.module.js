@@ -14,6 +14,7 @@
         $stateProvider.state('blog', {
             parent : 'layout',
             url : '/blog',
+            title: 'Blog - tous les articles',
             views : {
                 content : {
                     controller : 'BlogController as vm',

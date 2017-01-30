@@ -14,12 +14,12 @@
    * @param $stateProvider
    * @ngInject
    */
-  function homeRouting($stateProvider, $mdThemingProvider, $stateParams){
+  function homeRouting($stateProvider, $mdThemingProvider){
     $stateProvider.state('liseuse', {
       cache: false,
       parent: 'layout',
       url: '/liseuse/:chapitre',
-      title: 'Nekogami no tabi - Chapitre ' + $stateParams.chapitre,
+      title: 'Nekogami no tabi - Lecture en ligne',
       views: {
         content: {
           controller: 'LiseuseController as vm',

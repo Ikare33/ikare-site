@@ -5,7 +5,7 @@
             'af.layout',
             [ 'ui.router', 'ngMaterial', 'ngLoadScript', 'af.blog', 'af.post', 'af.form',
                     'af.toolbar', 'af.board', 'af.menu',
-                    'af.liseuse', 'af.accueil', 'af.nekogaminotabi.synopsis', 'af.nekogaminotabi.betaLecteurs' ])
+                    'af.liseuse', 'af.accueil', 'af.nekogaminotabi.synopsis', 'af.nekogaminotabi.betaLecteurs', 'af.nekogaminotabi.lectureEnLigne' ])
             .config(layoutRouting);
 
     /**
@@ -51,8 +51,8 @@
                 state : 'nekogaminotabi/betaLecteurs',
                 type : 'link'
             }, {
-                name : 'La liseuse',
-                state : 'nekogaminotabi/liseuse',
+                name : 'Lecture en ligne',
+                state : 'nekogaminotabi/lectureEnLigne',
                 type : 'link'
             }, {
                 name : 'Lecture en ligne',

@@ -17,7 +17,7 @@
 
         $log.debug($stateParams.id);
 
-        vm.post = postModel.get($stateParams.id);
+        vm.post = postModel.get($stateParams.id.trim());
 
         angular
         .element(document)

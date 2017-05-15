@@ -139,18 +139,24 @@ $app->get ( '/api/v1/posts/', function () use ($app) {
 	return $app->response;
 } );
 
+
 $app->get ( '/api/v1/posts/:id', function ($id) use ($app) {
 	$app->response->setStatus ( 200 );
-	
-	// on se connecte à MySQL
+    
+    // on se connecte à MySQL
 	$db = mysqli_connect ( 'localhost:3306', 'root', '', 'ikare' );
 	
 	// on sélectionne la base
 	// mysql_select_db('ikare',$db);
 	
-	$req = mysqli_query ( $db, 'SELECT * FROM POST WHERE ID = "' . $id . '"' );
+	$req = mysqli_query ( $db, 'SELECT * FROM post WHERE ID = "' . $id . '"' );
 	
-	$row = mysqli_fetch_assoc ( $req );
+        if($req != false){
+	    $row = mysqli_fetch_assoc ( $req );
+        }else{
+            $app->response->body ($id);
+            return $app->response;
+        }
 	
 	// $data = array_change_key_case (mysql_fetch_assoc($req));
 	// error_log(implode(',', $result));

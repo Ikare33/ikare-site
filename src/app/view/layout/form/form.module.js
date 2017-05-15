@@ -23,6 +23,6 @@
             }
         });
 
-        $mdThemingProvider.theme('default').primaryPalette('pink');
+        //$mdThemingProvider.theme('default').primaryPalette('pink');
     }
 })();

@@ -4,7 +4,7 @@
     angular.module(
             'af.layout',
             [ 'ui.router', 'ngMaterial', 'ngLoadScript', 'af.blog', 'af.post', 'af.form',
-                    'af.toolbar', 'af.board', 'af.menu',
+                    'af.toolbar', 'af.board', 'af.menu', 'af.accueil',
                     'af.liseuse', 'af.accueil', 'af.nekogaminotabi.synopsis', 'af.nekogaminotabi.betaLecteurs', 'af.nekogaminotabi.lectureEnLigne' ])
             .config(layoutRouting);
 
@@ -112,7 +112,7 @@
 
         // Theme
 
-        $mdThemingProvider.theme('default').primaryPalette('red');
+        $mdThemingProvider.theme('default').primaryPalette('red').accentPalette('indigo').dark();
 
         $mdThemingProvider.theme('blueTheme').primaryPalette('blue');
 
@@ -124,7 +124,7 @@
 
         $mdThemingProvider.theme('DarkBlueTheme').primaryPalette('blue').dark();
 
-        $mdThemingProvider.theme('DarkRedTheme').primaryPalette('red').dark();
+        $mdThemingProvider.theme('DarkRedTheme').primaryPalette('red').dark().accentPalette('blue');
 
         $mdThemingProvider.theme('DarkGreenTheme').primaryPalette('green')
                 .dark();

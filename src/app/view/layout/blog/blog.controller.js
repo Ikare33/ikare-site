@@ -20,11 +20,11 @@
         
         $log.debug(vm.posts);
 
-        vm.submit = function() {
+        /*vm.submit = function() {
             if (vm.postForm.$valid) {
                 vm.theme = vm.postForm.palette;
             }
-        };
+        };*/
 
         vm.toPost = function(id){
             $log.debug("toPost : " + id);

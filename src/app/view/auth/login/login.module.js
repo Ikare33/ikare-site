@@ -17,7 +17,6 @@
             controller: "LoginController as vm"
         })
 
-        $mdThemingProvider.theme('default')
-        .primaryPalette('red').accentPalette('red').dark();
+        //$mdThemingProvider.theme('default').primaryPalette('red').accentPalette('red').dark();
     }
 })();

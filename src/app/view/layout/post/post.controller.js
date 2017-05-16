@@ -38,26 +38,6 @@
                         }
                     }(document, 'script', 'twitter-wjs');
 
-                    // initialisation disqus
-                    var disqus_shortname = 'I-kare'; // required:
-                    // replace
-                    // example with
-                    // your forum
-                    // shortname
-                    var disqus_disable_mobile = true;
-
-                    /* * * DON'T EDIT BELOW THIS LINE * * */
-                    (function() {
-                        var dsq = document.createElement('script');
-                        dsq.type = 'text/javascript';
-                        dsq.async = true;
-                        dsq.src = '//' + disqus_shortname
-                        + '.disqus.com/embed.js';
-                        (document.getElementsByTagName('head')[0] || document
-                                .getElementsByTagName('body')[0])
-                                .appendChild(dsq);
-                    })();
-
                     // initialisation FB
                     (function(d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];

@@ -1,0 +1,18 @@
+<div>
+  <!-- <div class="comment-header">
+    <span class="comment-user">
+     <span class="comment-username">{{comment.name}}</span>
+      <span class="comment-date" ng-if="comment.date">{{comment.date}}</span>
+  </div> -->
+  <md-card class="comment">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="commentText" ng-bind-html="comment.text"></span><br/>
+            <br/>
+            <span class="commentSubHead">{{comment.name}} - {{comment.date}}</span>
+          </md-card-title-text>
+        </md-card-title>
+      </md-card>
+      <br/>
+    <div comments-transclude comment-data="comment.children"></div>
+</div>

@@ -1,6 +1,71 @@
 <?php
 require 'vendor/autoload.php';
 
+class Post implements JsonSerializable
+{
+
+    public $id;
+    public $title;
+    public $description;
+    public $body;
+    public $image;
+    public $oldurl;
+    public $comments;
+
+    public function __construct($id, $title, $description, $body, $image, $oldurl)
+    {
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $this->body = $body;
+        $this->image = $image;
+        $this->oldurl = $oldurl;
+    }
+    
+    public function addComment($comment){
+    	$this->comments[] = $comment;
+    }
+   
+
+   	public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'body' => $this->body,
+            'image' => $this->image,
+            'oldurl' => $this->oldurl,
+            'comments' => $this->comments
+        ];
+    }
+}
+
+class Comment implements JsonSerializable
+{
+
+	public $name;
+	public $text;
+	public $date;
+
+	public function __construct($name, $text, $date)
+	{
+		$this->name = $name;
+		$this->text = $text;
+		$this->date = $date;
+	}
+	 
+
+	public function jsonSerialize()
+	{
+		return [
+				'name' => $this->name,
+				'text' => $this->text,
+				'date' => $this->date
+		];
+	}
+}
+
 $app = new \Slim\Slim ();
 
 $app->get ( '/api/v1/trello/technique', function () use ($app) {
@@ -152,16 +217,31 @@ $app->get ( '/api/v1/posts/:id', function ($id) use ($app) {
 	$req = mysqli_query ( $db, 'SELECT * FROM post WHERE ID = "' . $id . '"' );
 	
         if($req != false){
-	    $row = mysqli_fetch_assoc ( $req );
+		    $result = mysqli_fetch_object ( $req );
+		    
+		    $post = new Post($result->id, $result->title, $result->description, $result->body, $result->image, $result->oldurl);
+	    	
         }else{
             $app->response->body ($id);
             return $app->response;
         }
 	
+	$req->close ();
+	
 	// $data = array_change_key_case (mysql_fetch_assoc($req));
 	// error_log(implode(',', $result));
 	
-	$app->response->body ( json_encode ( array_change_key_case ( $row ) ) );
+    $req = mysqli_query ( $db, 'SELECT * FROM comment WHERE post_id = "' . $id . '" ORDER BY date ASC');
+	
+    if($req != false){
+    	while($comment = mysqli_fetch_object($req))
+    	{
+    		$post->addComment(new Comment($comment->name, $comment->text, $comment->date)); 
+    	}    
+    	
+    }
+    
+  	$app->response->body ( json_encode($post)  );
 	
 	$req->close ();
 	
@@ -172,6 +252,28 @@ $app->get ( '/api/v1/comments', function () use ($app) {
 	$app->response->setStatus ( 200 );
 	
 	$app->response->body ( json_encode ( [ ] ) );
+	
+	return $app->response;
+} );
+
+$app->post ( '/api/v1/comments', function () use ($app) {
+	$app->response->setStatus ( 200 );
+
+	$comment = json_decode($app->request->getBody());
+	
+	$db = mysqli_connect ( 'localhost:3306', 'root', '', 'ikare' );
+	$text = 'INSERT INTO comment (name,text,date,post_id) VALUES ("' . $comment->name . '","'  . $comment->text . '","' . $comment->date . '","' . $comment->post_id . '")';
+	$req = mysqli_query ( $db, 'INSERT INTO comment (name,text,date,post_id) VALUES ("' . $comment->name . '","'  . $comment->text . '","' . $comment->date . '","' . $comment->post_id . '")');
+	
+	if(!$req){
+		$app->response->setStatus ( 500 );
+		$app->response->body(mysqli_error($db) . " " . $text);
+	}else{
+		$req = mysqli_query ( $db, 'SELECT * FROM comment WHERE id='.mysqli_insert_id($db));
+		$app->response->body(json_encode(mysqli_fetch_assoc ( $req )));
+	
+		$req->close ();
+	}
 	
 	return $app->response;
 } );

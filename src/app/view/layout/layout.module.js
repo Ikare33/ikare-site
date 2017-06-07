@@ -55,7 +55,7 @@
                 state : 'nekogaminotabi/lectureEnLigne',
                 type : 'link'
             }, {
-                name : 'Lecture en ligne',
+                name : 'Chapitres',
                 type : 'submenu',
                 children : [ {
                     name : 'Chapitre 1',
@@ -66,7 +66,7 @@
                     state : 'liseuse({chapitre: 2})',
                     type : 'link'
                 } ]
-            }, {
+            }/*, {
                 name : 'Infos sur les chapitres',
                 type : 'submenu',
                 children : [ {
@@ -78,7 +78,7 @@
                     state : 'nekogaminotabi/infos({chapitre: 2})',
                     type : 'link'
                 } ]
-            } ]
+            }*/ ]
         }).addMenuItem({
             name : 'Blog',
             type : 'categorie',
@@ -112,7 +112,7 @@
 
         // Theme
 
-        $mdThemingProvider.theme('default').primaryPalette('red').accentPalette('indigo').dark();
+        $mdThemingProvider.theme('default').primaryPalette('red').accentPalette('blue').dark();
 
         $mdThemingProvider.theme('blueTheme').primaryPalette('blue');
 
@@ -122,13 +122,14 @@
 
         $mdThemingProvider.theme('purpleTheme').primaryPalette('purple');
 
-        $mdThemingProvider.theme('DarkBlueTheme').primaryPalette('blue').dark();
+        $mdThemingProvider.theme('DarkBlueTheme').backgroundPalette('light-blue');
 
         $mdThemingProvider.theme('DarkRedTheme').primaryPalette('red').dark().accentPalette('blue');
 
-        $mdThemingProvider.theme('DarkGreenTheme').primaryPalette('green')
-                .dark();
+        $mdThemingProvider.theme('DarkGreenTheme').primaryPalette('green').dark();
 
+        $mdThemingProvider.theme('DarkGreyTheme').backgroundPalette('grey').dark();
+        
         $mdThemingProvider.alwaysWatchTheme(true);
     }
 })();

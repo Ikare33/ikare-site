@@ -16,7 +16,7 @@
         $stateProvider.state('nekogaminotabi/lectureEnLigne', {
             parent: 'layout',
             url: '/nekogaminotabi/lectureEnLigne',
-            title: 'Lecture en ligne',
+            title: 'La liseuse',
             views: {
                 content: {
                     templateUrl: 'app/view/layout/nekogaminotabi/lectureEnLigne/lectureEnLigne.html'

@@ -1,25 +1,64 @@
-<div layout="column" flex layout-fill
+<div layout="column" flex layout-fill layout-padding
     style="height: calc(100vh - 58px); display: block;">
     <article layout="column" layout-align="center center">
         <h1 class="blog-title">{{::vm.post.title}}</h1>
 
-        <img class="blog-title-image" src="{{::vm.post.image}}" />
+        <img class="blog-title-image" src="{{::vm.post.image}}" ></img>
 
         <div ng-bind-html="vm.post.body" flex layout-fill
             class="blog-content"></div>
     </article>
+    
+    <div id="fb-root"></div>
 
     <div layout="row" layout-align="center center" layout-margin="5px">
-        <div class="fb-like" data-href="{{::vm.post.oldurl}}"
-            data-colorscheme="dark" data-layout="button_count"
-            data-action="like" data-show-faces="true" data-send="true"></div>
-        <a href="https://twitter.com/share" class="twitter-share-button"
-            {count} data-via="Nekogaminotabi">Tweeter</a>
+        <div class="fb-like" data-href="{{::vm.post.oldurl}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div><span style="witdh:10px">&nbsp;</span>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="Ikare33">Tweeter</a><span style="witdh:10px">&nbsp;</span>
         <script src="https://apis.google.com/js/plusone.js"></script>
         <g:plus action="share" href="{{::vm.post.oldurl}}"
             annotation="bubble"></g:plus>
     </div>
 
-    <br /> <br />
-
+    <br />
+    <h2>Commentaires</h2>
+    <md-divider></md-divider>
+    <br/>
+    <comments comment-data="vm.post.comments"></comments>
+    <span ng-if="!vm.post.comments.length">Aucun commentaire pour l'instant !</span>
+    
+    <br/>
+    <h2>Ajouter un commentaire</h2>
+    <md-divider></md-divider>
+    <md-card md-theme="DarkGreyTheme" md-theme-watch layout-padding>
+        <form novalidate name="vm.commentForm" ng-submit="vm.addComment()">
+            <md-input-container class="md-block md-accent" flex-gt-sm>
+              <label>Nom</label>
+              <input md-maxlength="30" required name="name" ng-model="vm.comment.name" class="md-accent"></input>
+        
+              <ng-messages
+                     for="vm.commentForm.name.$error">
+                <ng-message ng-show="vm.commentForm.$submitted || vm.commentForm.name.$touched" when="required">On veut savoir comment tu t'appelles</ng-message>
+                <ng-message ng-show="vm.commentForm.$submitted || vm.commentForm.name.$touched" when="md-maxlength">Pas plus de 30 caractères !</ng-message>
+              </ng-messages>
+            </md-input-container>
+            
+            <md-input-container class="md-block md-accent">
+              <label>Commentaire</label>
+              <textarea md-maxlength="2500" rows="10" required name="text" ng-model="vm.comment.text" class="md-accent"></textarea>
+        
+             <ng-messages
+                     for="vm.commentForm.text.$error">
+                <ng-message ng-show="vm.commentForm.$submitted || vm.commentForm.text.$touched" when="required">Dis quelque chose au moins !</ng-message>
+                <ng-message ng-show="vm.commentForm.$submitted || vm.commentForm.text.$touched" when="md-maxlength">Trop de choses à dire ? Tu devrais en parler à ton psy...</ng-message>
+              </ng-messages>
+            </md-input-container>
+            
+    <!--         <md-input-container class="md-block md-accent" flex-gt-sm> -->
+    <!--             <label ng-show="false">Champ à ne pas remplir ! Vérification pour les bots</label> -->
+    <!--             <input name="bot" ng-model="vm.comment.bot" class="md-accent" ng-show="false"></imput> -->
+    <!--         </md-input-container> -->
+            <div style="vertical-align:middle;">
+            <md-button class="md-raised md-accent circular-progress-button" type="submit"><md-progress-circular md-diameter="30" md-mode="indeterminate" ng-show="vm.showSpinner" class="circular-progress-spinner"></md-progress-circular><span ng-show="!vm.showSpinner">Ajouter</span></md-button><label class="commentLabel" ng-show="vm.showMessageCommentaire">Commentaire ajout&eacute;</label></div>
+        </form>
+     </md-card>
 </div>

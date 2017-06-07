@@ -4,7 +4,8 @@
     angular.module('af.post',[
                               'ngMaterial',
                               'ui.router',
-                              'af.model'
+                              'af.model',
+                              'af.comments'
                               ])
                               .config(postConfig);
 
@@ -35,12 +36,10 @@
      * @param $stateparams
      * @ngInject
      */
-    function getPost(postModel, $stateParams, commentModel){
+    function getPost(postModel, $stateParams){
         return postModel
         .find($stateParams.id)
         .then(function(post) {
-            return postModel.loadRelations(post, ['comment']);
-        }).then(function(post){
             return post;
         });
     }

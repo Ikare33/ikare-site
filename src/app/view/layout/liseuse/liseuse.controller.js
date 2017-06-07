@@ -12,7 +12,7 @@
      * @ngInject
      */
     function LiseuseController($log, $mdTheming, angularPlayer, $scope,
-            $stateParams, $location, $mdMedia) {
+            $stateParams, $interval, $location, $mdMedia, $window) {
         var vm = this;
 
         $log.debug('LiseuseController start');
@@ -20,7 +20,22 @@
         vm.ready = false;
         vm.determinateValue = 0;
 
-        vm.canvasWidth = $mdMedia('gt-sm') ? 260 : 0;
+        vm.canvasWidth = $mdMedia('gt-sm') ? 304 : 0;
+        vm.gmHeight = $mdMedia('sm') || $mdMedia('md') || $mdMedia('xs') || $mdMedia('lg') ? 49 : 0;
+        vm.gmWidth = $mdMedia('sm') || $mdMedia('md') || $mdMedia('xs') || $mdMedia('lg') ? 0 : 20;
+        
+        $log.warn("xs : " + $mdMedia('xs'));
+        $log.warn("gt-xs : " + $mdMedia('gt-xs'));
+        $log.warn("sm : " + $mdMedia('sm'));
+        $log.warn("gt-sm : " + $mdMedia('gt-sm'));
+        $log.warn("md : " + $mdMedia('md'));
+        $log.warn("gt-md : " + $mdMedia('gt-md'));
+        $log.warn("lg : " + $mdMedia('lg'));
+        $log.warn("gt-lg : " + $mdMedia('gt-lg'));
+        $log.warn("xl : " + $mdMedia('xl'));
+        $log.warn("portrait : " + $mdMedia('portrait'));
+        $log.warn("landscape : " + $mdMedia('landscape'));
+        $log.warn("print : " + $mdMedia('print'));
 
         vm.zoom = 100;
 
@@ -29,6 +44,9 @@
         vm.basePath = $location.absUrl().replace($location.path(), '');
 
         vm.title = "Essai Liseuse";
+        
+        $scope.Math = window.Math;
+        $scope.contentStyle = {'overflow' : 'hidden'};
 
         // $scope.pdfUrl =
         // "nekogamiNoTabi/chapitres/chapitre1/nekogamiNoTabi1.pdf";
@@ -43,8 +61,11 @@
                     .getPage(vm.page)
                     .then(
                             function getPageHelloWorld(page) {
-                                var scale = (vm.zoom / 100) * vm.scaleBase;
-                                var viewport = page.getViewport(scale);
+                                var scale = (vm.zoom / 100.0);
+                                if(vm.scaleBase > 1){
+                                    scale = (vm.zoom / 100.0) * vm.scaleBase;
+                                }
+                                
                                 //
                                 var canvas = document
                                         .getElementById('the-canvas');
@@ -53,13 +74,40 @@
                                 //
                                 // Prepare canvas using PDF page dimensions
                                 //
-                                canvas.height = viewport.height;
-                                canvas.width = viewport.width;
+                                
 
+                                
+                                
                                 //
                                 // Render PDF page into canvas context
                                 //
                                 var context = canvas.getContext('2d');
+                                
+                                var devicePixelRatio = window.devicePixelRatio || 1;
+                                var backingStoreRatio = context.webkitBackingStorePixelRatio ||
+                                                    context.mozBackingStorePixelRatio ||
+                                                    context.msBackingStorePixelRatio ||
+                                                    context.oBackingStorePixelRatio ||
+                                                    context.backingStorePixelRatio || 1;
+
+                                var ratio = devicePixelRatio / backingStoreRatio;
+                                
+                                var viewport = page.getViewport(scale * ratio * 1.2);
+                                
+                                canvas.height = viewport.height;
+                                canvas.width = viewport.width;
+
+                                canvas.style.width = (document
+                                        .getElementById('divContent').clientWidth - vm.gmWidth) * (vm.zoom / 100) + 'px';
+                                canvas.style.height = (document
+                                        .getElementById('divContent').clientWidth - vm.gmWidth) * ((viewport.height / viewport.width)) * (vm.zoom / 100) + 'px';
+                                
+                                $log.warn((document
+                                        .getElementById('divContent').clientWidth - vm.gmWidth) * (vm.zoom / 100) + 'px');
+                                
+                                $log.warn((document
+                                        .getElementById('divContent').clientWidth - vm.gmWidth) * ((viewport.height / viewport.width)) * (vm.zoom / 100) + 'px');
+                                
                                 var pageRendering = page.render({
                                     canvasContext : context,
                                     viewport : viewport
@@ -474,6 +522,7 @@
                         if (PDFJS) {
                             $log.debug(PDFJS);
                             PDFJS.workerSrc = 'pdfjs/pdf.worker.jsext';
+                            //PDFJS.disableWorker = true;
                             //
                             // Asynchronous download PDF as an ArrayBuffer
                             //
@@ -498,14 +547,14 @@
                                                                         page) {
 
                                                                     var viewport = page
-                                                                            .getViewport(2);
+                                                                            .getViewport(1);
 
                                                                     $log
                                                                             .warn(document
-                                                                                    .getElementById('loadPDF').clientWidth);
+                                                                                    .getElementById('divContent').clientWidth);
 
                                                                     vm.scaleBase = ((document
-                                                                            .getElementById('loadPDF').clientWidth - 20) / viewport.width) * 2;
+                                                                            .getElementById('divContent').clientWidth - vm.gmWidth) / viewport.width);
 
                                                                     $log
                                                                             .warn(vm.scaleBase);
@@ -522,7 +571,9 @@
 
         };
 
-        angular.element(document).ready(vm.initListOfSongs);
+        angular.element(document).ready(function(){
+            vm.initListOfSongs();
+            });
         $scope.$on('$stateChangeStart', function() {
             angularPlayer.stop();
         });

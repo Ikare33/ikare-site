@@ -5,7 +5,8 @@
       'ui.router',
       'ngMaterial',
       'pdf',
-      'angularSoundManager'
+      'angularSoundManager',
+      'angular-marquee'
     ])
     .config(homeRouting);
 

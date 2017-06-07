@@ -1,27 +1,23 @@
-(function() {
+(function(){
     'use strict';
 
-    angular.module('af.model').factory('commentModel', commentModel);
+    angular.module('af.model')
+    .factory('commentModel', commentModel);
 
     /**
-     * 
+     *
      * @param DS
      * @param $log
      * @return {*}
      * @ngInject
      */
-    function commentModel(DS) {
+    function commentModel(DS, $log){
         return DS.defineResource({
-            name : 'comment',
-            idAttribute : 'id',
-            endpoint : 'comments',
-            relations : {
-                belongsTo : {
-                    post : {
-                        localField : 'post',
-                        localKey : 'postId'
-                    }
-                }
+            name: 'comment',
+            idAttribute: 'id',
+            endpoint: 'comments',
+            afterCreate: function(resource, obj, cb){
+                cb(null, obj);
             }
         });
     }

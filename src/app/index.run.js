@@ -12,8 +12,10 @@
         });
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            $log.debug("Changement de titre : " + toState.title);
-            $rootScope.title = toState.title;
+            if(!(!toState.title || toState.title.length === 0)){
+                $log.debug("Changement de titre : " + toState.title);
+                $rootScope.title = toState.title;
+            }
         });
         
         $log.debug('runBlock end');
